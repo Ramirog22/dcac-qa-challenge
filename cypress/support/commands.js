@@ -63,3 +63,16 @@ Cypress.Commands.add("createCartApi", (cartPayload, options = {}) => {
         ...options
     })
 })
+
+// Command para actualizar un carrito existente
+Cypress.Commands.add("updateCartApi", (cartId, cartPayload, options = {}) => {
+    const baseUrl = Cypress.env("apiBaseUrl");
+
+    return cy.request({
+        method: "PUT",
+        url: `${baseUrl}/carts/${cartId}`,
+        body: cartPayload,
+        failOnStatusCode: false,
+        ...options
+    });
+});

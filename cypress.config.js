@@ -5,6 +5,7 @@ module.exports = defineConfig({
 
   e2e: {
     allowCypressEnv: true,
+    baseUrl: "https://www.saucedemo.com",
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },

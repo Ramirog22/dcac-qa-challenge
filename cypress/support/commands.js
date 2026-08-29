@@ -23,3 +23,18 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+// Command custom para el inicio de sesion 
+Cypress.Commands.add("loginApi", (username, password) => {
+    const baseUrl = Cypress.env("apiBaseUrl");
+
+    return cy.request({
+        method: "POST",
+        url: `${baseUrl}/auth/login`,
+        body: {
+            username: username,
+            password: password
+        },
+        failOnStatusCode: false // Esto es para poder testear casos con fallo y que cypress no bloquee todo al fallar la api
+    })
+});

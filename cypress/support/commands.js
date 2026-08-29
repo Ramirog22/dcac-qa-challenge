@@ -38,3 +38,28 @@ Cypress.Commands.add("loginApi", (username, password) => {
         failOnStatusCode: false // Esto es para poder testear casos con fallo y que cypress no bloquee todo al fallar la api
     })
 });
+
+// Command para obtener todos los productos
+Cypress.Commands.add("getProductsApi", (options = {}) => {
+    const baseUrl = Cypress.env("apiBaseUrl");
+
+    return cy.request({
+        method: "GET",
+        url: `${baseUrl}/products`,
+        failOnStatusCode: false,
+        ...options
+    })
+})
+
+// Command para crear un nuevo carrito
+Cypress.Commands.add("createCartApi", (cartPayload, options = {}) => {
+    const baseUrl = Cypress.env("apiBaseUrl");
+
+    return cy.request({
+        method: "POST",
+        url: `${baseUrl}/carts`,
+        body: cartPayload,
+        failOnStatusCode: false,
+        ...options
+    })
+})

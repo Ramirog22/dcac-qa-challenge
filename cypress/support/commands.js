@@ -74,5 +74,17 @@ Cypress.Commands.add("updateCartApi", (cartId, cartPayload, options = {}) => {
         body: cartPayload,
         failOnStatusCode: false,
         ...options
-    });
-});
+    })
+})
+
+// Command para eliminar un carrito
+Cypress.Commands.add("deleteCartApi", (cartId, options = {}) => {
+    const baseUrl = Cypress.env("apiBaseUrl");
+
+    return cy.request({
+        method: "DELETE",
+        url: `${baseUrl}/carts/${cartId}`,
+        failOnStatusCode: false,
+        ...options
+    })
+})

@@ -83,4 +83,18 @@ describe('FakeStoreAPI - Creacion de carrito', () => {
             })
         })
     })
+
+    it('Caso #3 - Eliminar carrito', () => {
+        // Agarro el ID del cart anterior
+        const cartId = Cypress.env("createdCartId");
+
+        // FAIL SAFE: Aseguramos que este el cartId
+        expect(cartId).to.exist;
+
+        // Borramos el carrito
+        cy.deleteCartApi(cartId).then((response) => {
+            // Validaciones
+            expect(response.status).to.be.oneOf([200, 204]);
+        })
+    })
 })
